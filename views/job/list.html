@@ -1,0 +1,201 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+                <table class="table table-hover table-bordered" id="sampleTable">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>名称</th>
+                        <th>请求方式</th>
+                        <th>请求url</th>
+                        <th>cron表达式</th>
+                        <th>通知人</th>
+                        <th>任务状态</th>
+                        <th>运行状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+
+<script type="text/javascript">
+    function del(id) {
+        if (confirm("确定要删除数据吗？")) {
+            $.ajax({
+                type: "POST",
+                url: "/job/deljob",
+                data: {"Id": id},
+                success: function (res) {
+                    alert(res.msg)
+                    if (res.status) {
+                        document.location.reload();
+                    }
+                }
+            })
+        }
+    }
+
+    function start(id) {
+        if (confirm("确定要开始任务吗？")) {
+            $.ajax({
+                type: "POST",
+                url: "/job/change",
+                data: {"Id": id, "Status": 1},
+                success: function (res) {
+                    alert(res.msg)
+                    if (res.status) {
+                        document.location.reload();
+                    }
+                }
+            })
+        }
+    }
+
+    function stop(id) {
+        if (confirm("确定要暂停任务吗？")) {
+            $.ajax({
+                type: "POST",
+                url: "/job/change",
+                data: {"Id": id, "Status": 0},
+                success: function (res) {
+                    alert(res.msg)
+                    if (res.status) {
+                        document.location.reload();
+                    }
+                }
+            })
+        }
+    }
+
+    function log(id) {
+        window.location.href = "/job/log?id=" + id
+    }
+
+    function edit(id) {
+        window.location.href = "/job/edit?id=" + id
+    }
+
+    function add() {
+        window.location.href = "/job/add"
+    }
+
+
+    $(document).ready(function () {
+        var table = $('#sampleTable').DataTable({
+            dom: 'Bfrtip',
+            processing: true,
+            serverSide: true,
+            autoWidth: false,
+            ordering: false,
+            ajax: {
+                url: '/job/list',
+                type: 'POST'
+            },
+            dom: '<"top"fl><"toolbar">rt<"bottom"ip><"clear">',
+            fnServerParams: function (data) {
+                data["group"] = $("#group  option:selected").val()
+            },
+            columns: [　//这个是显示到界面上的个数据　格式为 {data:'显示的字段名'}
+                {data: 'Id'},
+                {data: 'Title'},
+                {data: 'Method'},
+                {data: 'Url', width: "20px"},
+                {data: 'Cron'},
+                {data: 'NoticeTo'},
+                {data: 'Status'},
+                {data: 'RunStatus'},
+                {data: "Id"}
+            ],
+            bFilter: false,
+            columnDefs: [{
+                targets: -1,
+                render: function (data, type, row, meta) {
+                    if (row.Status == 1) {
+                        btn = "<button onclick='stop(" + row.Id + ")' class=\"btn btn-secondary btn-sm\" type=\"button\">暂停</button>"
+                    } else {
+                        btn = "<button onclick='start(" + row.Id + ")' class=\"btn btn-success btn-sm\" type=\"button\">开始</button>"
+                    }
+                    return '<div class="btn-group" role="group" aria-label="..."> ' +
+                            '<button onclick="del(' + row.Id + ')" type="button"   class="btn btn-danger btn-sm">删除</button>' +
+                            '<button onclick="edit(' + row.Id + ')" type="button"   class="btn btn-primary btn-sm">查看编辑</button> ' +
+                            '<button onclick="log(' + row.Id + ')" type="button"   class="btn btn-warning btn-sm">日志</button>' + btn + ' </div>'
+                }
+            },
+                {
+                    targets: -3,
+                    render: function (data, type, row, meta) {
+                        if (data == 0) {
+                            return "<span class=\"badge badge-pill badge-secondary\">暂停</span>"
+                        } else {
+                            return "<span class=\"badge badge-pill badge-success\">正常</span>"
+                        }
+                    }
+                },
+                {
+                    targets: -2,
+                    render: function (data, type, row, meta) {
+                        if (row.Status == 0) {
+                            return "<span class=\"badge badge-pill badge-secondary\">暂停</span>"
+                        }
+                        if (data == 1) {
+                            return "<span class=\"badge badge-pill badge-success\">运行中</span>"
+                        } else {
+                            return "<span class=\"badge badge-pill badge-danger\">异常</span>"
+                        }
+                    }
+                },
+            ],
+            buttons: []
+        });
+        select = "<select style='margin-left:10px' id='group' class=\"form-control\">\n" +
+
+                "  <option value='0'>选择分组</option>\n" +
+        {{range $index, $elem := .jobg}}
+                "  <option value='{{$elem.Id}}'>{{$elem.Title}}</option>\n" +
+        {{end}}
+                "</select>"
+        $("#sampleTable_length").html('<button class="btn btn-primary" onclick="add()" type="button">新增</button>&nbsp<button class="btn btn-primary" onclick="stopAll()" type="button">暂停所有</button>&nbsp<button class="btn btn-primary" onclick="startAll()" type="button">开始所有</button>' + select);
+
+        $("#group").on("change", function () {
+            table.ajax.reload()
+        })
+
+    })
+    ;
+
+    function stopAll() {
+        $.ajax({
+            type: "POST",
+            url: "/job/changeall",
+            data: {"group_id": $("#group  option:selected").val(), "status": 0},
+            success: function (res) {
+                alert(res.msg)
+                if (res.status) {
+                    window.location.reload()
+                }
+            }
+        })
+    }
+    function startAll() {
+        $.ajax({
+            type: "POST",
+            url: "/job/changeall",
+            data: {"group_id": $("#group  option:selected").val(), "status": 1},
+            success: function (res) {
+                alert(res.msg)
+                if (res.status) {
+                    window.location.reload()
+                }
+            }
+        })
+    }
+
+</script>

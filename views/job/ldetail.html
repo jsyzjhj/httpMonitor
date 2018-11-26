@@ -1,0 +1,42 @@
+<div class="col-md-12">
+    <div class="tile">
+        <div class="tile-body">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <h6 class="control-label">错误时间：</h6>
+                    <div id="isPass" class="alert alert-primary">
+                    {{.jobr.CreateTime}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h6 class="control-label">执行结果：</h6>
+                    <div id="isPass" class="alert alert-danger">
+                    {{if eq true .jobr.RunRes}}
+                        通过
+                    {{else}}
+                        不通过
+                    {{end}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h6 class="control-label">运行时间：</h6>
+                    <div id="runTime" class="alert alert-primary">{{.jobr.RunTime}}</div>
+                </div>
+                <div class="form-group">
+                    <h6 class="control-label">返回状态码：</h6>
+                    <div id="statusCode" class="alert alert-primary">{{.jobr.StatusCode}}</div>
+                </div>
+                <div class="form-group">
+                    <h6 class="control-label">错误信息：</h6>
+                    <div id="err" class="alert alert-danger">{{.jobr.Err}}</div>
+                </div>
+                <div class="form-group">
+                    <h6 class="control-label">返回内容：</h6>
+                    <textarea id="reqContent" class="form-control" name="RegVal" rows="10"
+                              placeholder="">{{.jobr.ReqContent}}</textarea>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

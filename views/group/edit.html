@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <h3 class="tile-title">添加新分组</h3>
+            <div class="tile-body">
+                <form>
+                    <div class="form-group">
+                        <label class="control-label">名称</label>
+                        <input class="form-control" type="text" name="Title" value="{{.jobg.Title}}" placeholder="请输入任务名称">
+                    </div>
+                    <input type="hidden" name="Id" value="{{.jobg.Id}}">
+                    <div class="form-group">
+                        <label class="control-label">分组描述</label>
+                        <textarea class="form-control" name="Description" rows="4"
+                                  placeholder="请输入分组描述">{{.jobg.Description}}</textarea>
+                    </div>
+
+                </form>
+            </div>
+            <div class="tile-footer">
+                <button class="btn btn-primary" type="button" id="add"><i
+                        class="fa fa-fw fa-lg fa-check-circle"></i>保存
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+<script>
+    $(function () {
+        $("#load").css({"display": "none"})
+        $("#add").on("click", function () {
+            $.ajax({
+                type: "POST",
+                url: "/group/edit",
+                data: $("form").serializeArray(),
+                success: function (res) {
+                    alert(res.msg)
+                    if (res.status) {
+                        window.location.href = "/group/list"
+                    }
+                }
+            })
+        })
+    })
+</script>

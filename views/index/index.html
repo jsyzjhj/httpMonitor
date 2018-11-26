@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-md-6 col-lg-3">
+        <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
+            <div class="info">
+                <h4>总任务数</h4>
+                <p><b>{{.num.total}}</b></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="widget-small info coloured-icon"><i class="icon fa fa-thumbs-o-up fa-3x"></i>
+            <div class="info">
+                <h4>开始任务数</h4>
+                <p><b>{{.num.start}}</b></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="widget-small warning coloured-icon"><i class="icon fa fa-envira fa-3x"></i>
+            <div class="info">
+                <h4>正常运行数</h4>
+                <p><b>{{.num.run}}</b></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="widget-small danger coloured-icon"><i class="icon fa fa-star fa-3x"></i>
+            <div class="info">
+                <h4>异常数</h4>
+                <p><b>{{.num.stop}}</b></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile text-black-50">
+            <h3 class="tile-title">运行日志</h3>
+            <div>
+            {{range $index, $elem := .log}}
+                <div>{{if isColor $elem}}
+                    <div style="color: red;font-weight: bold">{{$elem}}</div>
+                {{else}}
+                    <div>{{$elem}}</div>
+                {{end}}</div>
+            {{end}}
+            </div>
+        </div>
+    </div>
+</div>
+</main>

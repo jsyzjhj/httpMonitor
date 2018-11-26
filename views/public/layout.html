@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="description"
+          content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <link rel="shortcut icon" href="/static/img/favicon.ico">
+    <title>HTTP监控平台</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.min.css">
+    <!-- Datatablesn Css-->
+    <link rel="stylesheet" type="text/css" href="/static/css/datatables.min.css"/>
+</head>
+<body class="app sidebar-mini rtl">
+<!-- Navbar-->
+<header class="app-header">
+    <a class="app-header__logo" href="/"></a>
+    <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
+                                    aria-label="Hide Sidebar"></a>
+    <ul class="app-nav">
+        <!--Notification Menu-->
+        <!-- User Menu-->
+        <li class="dropdown"><a class="app-nav__item" href="/login/out" data-toggle="dropdown"
+                                aria-label="Open Profile Menu"><i class="fa fa-sign-out fa-lg"></i>退出登陆</a>
+
+        </li>
+    </ul>
+</header>
+<!-- Sidebar menu-->
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar">
+    <div class="app-sidebar__user"><img class="app-sidebar__user-avatar"
+                                        src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg"
+                                        alt="User Image">
+        <div>
+            <p class="app-sidebar__user-name">System</p>
+            <p class="app-sidebar__user-designation">欢迎使用</p>
+        </div>
+    </div>
+    <ul class="app-menu">
+        <li><a class="app-menu__item {{if eq "index" .menu}}active{{end}}" href="/"><i
+                class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">系统主页</span></a></li>
+        <li><a class="app-menu__item {{if eq "job" .menu}}active{{end}}" href="/job/list"><i
+                class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label">任务管理</span></a></li>
+        <li><a class="app-menu__item {{if eq "group" .menu}}active{{end}}" href="/group/list"><i
+                class="app-menu__icon fa fa-group"></i><span class="app-menu__label">分组管理</span></a></li>
+        <li><a class="app-menu__item {{if eq "config" .menu}}active{{end}}" href="/config/index"><i
+                class="app-menu__icon fa fa-wrench"></i><span class="app-menu__label">系统配置</span></a></li>
+    </ul>
+</aside>
+<script type="text/javascript" src="/static/js/pdfmake.min.js"></script>
+<script type="text/javascript" src="/static/js/vfs_fonts.js"></script>
+<script type="text/javascript" src="/static/js/datatables.min.js"></script>
+<script src="/static/js/main.js"></script>
+<main class="app-content">
+    <div class="app-title">
+        <div>
+            <h1><i class="fa fa-th-list"></i> {{.name}}</h1>
+            <a href="javascript:history.back(-1);"><i class="fa fa-mail-reply"></i>返回</a>
+        </div>
+
+    </div>
+{{.LayoutContent}}
+
+</body>
+</html>

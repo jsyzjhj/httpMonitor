@@ -1,0 +1,78 @@
+<form>
+    <div class="tile">
+        <button class="btn btn-primary" type="button" id="add"><i
+                class="fa fa-fw fa-lg fa-check-circle"></i>保存
+        </button>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="tile">
+                <h3 class="tile-title">邮件配置</h3>
+                <div class="tile-body">
+                    <div class="form-group">
+                        <label class="control-label">用户名</label>
+                        <input class="form-control" value="{{.config.user}}" type="text" name="email::user"
+                               placeholder="请输入用户名">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">密码</label>
+                        <input class="form-control" value="{{.config.password}}" type="text" name="email::password"
+                               placeholder="请输入密码">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">host</label>
+                        <input class="form-control" value="{{.config.host}}" type="text" name="email::host"
+                               placeholder="请输入host">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">addr</label>
+                        <input class="form-control" value="{{.config.addr}}" type="text" name="email::addr"
+                               placeholder="请输入addr">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="tile">
+                <h3 class="tile-title">腾讯云短信配置</h3>
+                <div class="tile-body">
+                    <div class="form-group">
+                        <label class="control-label">appid</label>
+                        <input class="form-control" value="{{.config.appid}}" type="text" name="msg::appid"
+                               class="form-control" type="text" placeholder="请输入appid">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">appkey</label>
+                        <input class="form-control" value="{{.config.appkey}}" type="text" name="msg::appkey"
+                               class="form-control" type="text" placeholder="请输入appkey">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">sign</label>
+                        <input class="form-control" value="{{.config.sign}}" type="text" name="msg::sign"
+                               class="form-control" type="text" placeholder="请输入sign">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</main>
+<script>
+    $(function () {
+        $("#add").on("click", function () {
+            $.ajax({
+                type: "POST",
+                url: "/config/save",
+                data: $("form").serializeArray(),
+                success: function (res) {
+                    alert(res.msg)
+                    if (res.status) {
+                        window.location.reload()
+                    }
+                }
+            })
+        })
+    })
+</script>

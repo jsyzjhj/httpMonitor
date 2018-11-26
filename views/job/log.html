@@ -1,0 +1,116 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+                <table class="table table-hover table-bordered" id="sampleTable">
+                    <thead>
+                    <tr>
+                        <th>错误时间</th>
+                        <th>运行时间</th>
+                        <th>返回状态码</th>
+                        <th>错误信息</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+
+<script type="text/javascript">
+    function detail(id) {
+        window.location.href = "/job/ldetail?id=" + id
+    }
+
+    function cutstr(str, len) {
+        var str_length = 0;
+        var str_len = 0;
+        str_cut = new String();
+        str_len = str.length;
+        for (var i = 0; i < str_len; i++) {
+            a = str.charAt(i);
+            str_length++;
+            if (escape(a).length > 4) {
+                //中文字符的长度经编码之后大于4
+                str_length++;
+            }
+            str_cut = str_cut.concat(a);
+            if (str_length >= len) {
+                str_cut = str_cut.concat("...");
+                return str_cut;
+            }
+        }
+        //如果给定字符串小于指定长度，则返回源字符串；
+        if (str_length < len) {
+            return str;
+        }
+    }
+
+    $(document).ready(function () {
+        $.fn.dataTable.ext.buttons.add = {
+            text: '新增',
+            action: function (e, dt, node, config) {
+                window.location.href = "/job/add"
+            }
+        };
+        $('#sampleTable').DataTable({
+            dom: '<"top"fl><"toolbar">rt<"bottom"ip><"clear">',
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: window.location.href,
+                type: 'POST'
+            },
+            columns: [　//这个是显示到界面上的个数据　格式为 {data:'显示的字段名'}
+                {data: 'CreateTime'},
+                {data: 'RunTime'},
+                {data: 'StatusCode'},
+                {data: 'Err'},
+                {data: null},
+            ],
+            buttons: [],
+            bFilter: false,
+            columnDefs: [{
+                targets: -1,
+                render: function (data, type, row, meta) {
+                    return '<div class="btn-group" role="group" aria-label="..."> ' +
+                            '<button onclick="detail(' + row.Id + ')" type="button"   class="btn btn-success btn-sm"">查看详细</button></div>'
+                }
+            },
+                {
+                    targets: 3,
+                    render: function (data, type, row, meta) {
+                        return cutstr(data, 70)
+                    }
+                }
+            ],
+        });
+        $("#sampleTable_length").html('<button class="btn btn-primary" onclick="deleteLog()" type="button">清空日志</button>');
+    });
+
+    function deleteLog() {
+        $.ajax({
+            type: "POST",
+            url: "/job/delalllog",
+            data: {"id": getUrlParam("id")},
+            success: function (res) {
+                alert(res.msg)
+                if (res.status) {
+                    window.location.reload()
+                }
+            }
+        })
+    }
+
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) return unescape(r[2]);
+        return null; //返回参数值
+    }
+</script>

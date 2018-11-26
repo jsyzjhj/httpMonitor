@@ -1,0 +1,122 @@
+2018/11/25 01:05:20.695 [C] [asm_amd64.s:522]  the request url is  /
+2018/11/25 01:05:20.695 [C] [asm_amd64.s:522]  Handler crashed with error runtime error: slice bounds out of range
+2018/11/25 01:05:20.695 [C] [asm_amd64.s:522]  /usr/local/go/src/runtime/asm_amd64.s:522
+2018/11/25 01:05:20.695 [C] [asm_amd64.s:522]  /usr/local/go/src/runtime/panic.go:513
+2018/11/25 01:05:20.696 [C] [asm_amd64.s:522]  /usr/local/go/src/runtime/panic.go:54
+2018/11/25 01:05:20.696 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/cnlh/httpMonitor/lib/file.go:23
+2018/11/25 01:05:20.696 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/cnlh/httpMonitor/controllers/index.go:20
+2018/11/25 01:05:20.696 [C] [asm_amd64.s:522]  /usr/local/go/src/runtime/asm_amd64.s:522
+2018/11/25 01:05:20.696 [C] [asm_amd64.s:522]  /usr/local/go/src/reflect/value.go:447
+2018/11/25 01:05:20.697 [C] [asm_amd64.s:522]  /usr/local/go/src/reflect/value.go:308
+2018/11/25 01:05:20.697 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/astaxie/beego/router.go:851
+2018/11/25 01:05:20.697 [C] [asm_amd64.s:522]  /usr/local/go/src/net/http/server.go:2741
+2018/11/25 01:05:20.697 [C] [asm_amd64.s:522]  /usr/local/go/src/net/http/server.go:1847
+2018/11/25 01:05:20.700 [C] [asm_amd64.s:522]  /usr/local/go/src/runtime/asm_amd64.s:1333
+2018/11/25 01:05:20.700 [E] [asm_amd64.s:522]  /usr/local/go/src/runtime/asm_amd64.s:1333
+2018/11/25 01:05:20.700 [server.go:2977]  [HTTP] http: multiple response.WriteHeader calls
+2018/11/25 01:46:28.880 [E] [server.go:2741]  template: index/index.html:41:26: executing "index/index.html" at <$elem>: can't give argument to non-function $elem
+2018/11/25 02:51:10.064 [E] [controller.go:281]  parse template err: config/index.html template: config/index.html:9: unexpected bad character U+005B '[' in command
+2018/11/25 02:54:05.367 [E] [controller.go:281]  parse template err: config/index.html template: config/index.html:9: expected :=
+2018/11/25 02:54:06.369 [E] [controller.go:281]  parse template err: config/index.html template: config/index.html:9: expected :=
+2018/11/25 02:54:23.427 [E] [controller.go:281]  parse template err: config/index.html template: config/index.html:9: bad character U+0060 '`'
+2018/11/25 02:54:41.860 [E] [template.go:174]  parse template err: config/index.html template: config/index.html:9: bad character U+0060 '`'
+2018/11/25 02:54:41.860 [W] [beego.go:103]  template: config/index.html:9: bad character U+0060 '`'
+2018/11/25 02:56:12.099 [E] [template.go:174]  parse template err: config/index.html template: config/index.html:9: expected :=
+2018/11/25 02:56:12.099 [W] [beego.go:103]  template: config/index.html:9: expected :=
+2018/11/25 02:56:50.065 [E] [template.go:174]  parse template err: config/index.html template: config/index.html:9: bad character U+0022 '"'
+2018/11/25 02:56:50.066 [W] [beego.go:103]  template: config/index.html:9: bad character U+0022 '"'
+2018/11/25 03:00:02.783 [E] [template.go:174]  parse template err: config/index.html template: config/index.html:9: expected :=
+2018/11/25 03:00:02.783 [W] [beego.go:103]  template: config/index.html:9: expected :=
+2018/11/25 03:00:11.299 [E] [template.go:174]  parse template err: config/index.html template: config/index.html:9: expected :=
+2018/11/25 03:00:11.299 [W] [beego.go:103]  template: config/index.html:9: expected :=
+2018/11/25 03:04:30.063 [C] [asm_amd64.s:522]  the request url is  /config/save
+2018/11/25 03:04:30.063 [C] [asm_amd64.s:522]  Handler crashed with error can't find templatefile in the path:views/configcontroller/save.tpl
+2018/11/25 03:04:30.063 [C] [asm_amd64.s:522]  /usr/local/go/src/runtime/asm_amd64.s:522
+2018/11/25 03:04:30.063 [C] [asm_amd64.s:522]  /usr/local/go/src/runtime/panic.go:513
+2018/11/25 03:04:30.063 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/astaxie/beego/template.go:73
+2018/11/25 03:04:30.063 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/astaxie/beego/controller.go:283
+2018/11/25 03:04:30.063 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/astaxie/beego/controller.go:234
+2018/11/25 03:04:30.063 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/astaxie/beego/controller.go:214
+2018/11/25 03:04:30.063 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/astaxie/beego/router.go:863
+2018/11/25 03:04:30.063 [C] [asm_amd64.s:522]  /usr/local/go/src/net/http/server.go:2741
+2018/11/25 03:04:30.063 [C] [asm_amd64.s:522]  /usr/local/go/src/net/http/server.go:1847
+2018/11/25 03:04:30.063 [C] [asm_amd64.s:522]  /usr/local/go/src/runtime/asm_amd64.s:1333
+2018/11/25 03:04:30.063 [server.go:2977]  [HTTP] http: multiple response.WriteHeader calls
+2018/11/25 10:44:00.061 [E] [job.go:166]  邮件发送失败！ dial tcp: address smtp.126.com: missing port in address
+2018/11/25 11:01:52.266 [E] [template.go:174]  parse template err: public/layout.html template: public/layout.html:36: function "IsSelect" not defined
+2018/11/25 11:01:52.266 [W] [beego.go:103]  template: public/layout.html:36: function "IsSelect" not defined
+2018/11/25 11:02:33.113 [E] [template.go:174]  parse template err: public/layout.html template: public/layout.html:36: function "IsSelect" not defined
+2018/11/25 11:02:33.113 [W] [beego.go:103]  template: public/layout.html:36: function "IsSelect" not defined
+2018/11/25 11:33:50.386 [E] [server.go:2741]  template: job/edit.html:36:49: executing "job/edit.html" at <$elem.Group.Id>: can't evaluate field Group in type *models.JobGroup
+2018/11/25 11:35:19.792 [E] [server.go:2741]  template: job/edit.html:36:47: executing "job/edit.html" at <.jobd.Group.Id>: can't evaluate field jobd in type *models.JobGroup
+2018/11/25 11:35:33.651 [E] [server.go:2741]  template: job/edit.html:36:49: executing "job/edit.html" at <$elem.Group.Id>: can't evaluate field Group in type *models.JobGroup
+2018/11/25 11:36:11.687 [E] [server.go:2741]  template: job/edit.html:36:49: executing "job/edit.html" at <$elem.Group>: can't evaluate field Group in type *models.JobGroup
+2018/11/25 11:36:53.644 [E] [server.go:2741]  template: job/edit.html:36:59: executing "job/edit.html" at <.jobd.Group.Id>: can't evaluate field jobd in type *models.JobGroup
+2018/11/25 11:37:17.742 [E] [server.go:2741]  template: job/edit.html:36:59: executing "job/edit.html" at <.jobd.Group.Id>: can't evaluate field jobd in type *models.JobGroup
+2018/11/25 11:39:16.010 [E] [server.go:2741]  template: job/edit.html:36:44: executing "job/edit.html" at <.jobd.Group.Id>: can't evaluate field jobd in type *models.JobGroup
+2018/11/25 11:40:00.652 [E] [server.go:2741]  template: job/edit.html:36:59: executing "job/edit.html" at <.jobd.CronType>: can't evaluate field jobd in type *models.JobGroup
+2018/11/25 11:40:18.193 [E] [server.go:2741]  template: job/edit.html:36:58: executing "job/edit.html" at <.jobd.CronType>: can't evaluate field jobd in type *models.JobGroup
+2018/11/25 11:40:26.374 [E] [server.go:2741]  template: job/edit.html:36:51: executing "job/edit.html" at <.jobd.CronType>: can't evaluate field jobd in type *models.JobGroup
+2018/11/25 11:40:27.092 [E] [server.go:2741]  template: job/edit.html:36:51: executing "job/edit.html" at <.jobd.CronType>: can't evaluate field jobd in type *models.JobGroup
+2018/11/25 11:40:42.181 [E] [server.go:2741]  template: job/edit.html:36:51: executing "job/edit.html" at <.jobd.CronType>: can't evaluate field jobd in type *models.JobGroup
+2018/11/25 12:45:24.349 [E] [controller.go:281]  parse template err: job/edit.html template: job/edit.html:36: undefined variable "$jobd"
+2018/11/25 12:45:32.753 [E] [controller.go:281]  parse template err: job/edit.html template: job/edit.html:36: undefined variable "$jobd"
+2018/11/25 12:45:37.168 [E] [controller.go:281]  parse template err: job/edit.html template: job/edit.html:36: undefined variable "$jobd"
+2018/11/25 12:45:39.846 [E] [controller.go:281]  parse template err: job/edit.html template: job/edit.html:36: undefined variable "$jobd"
+2018/11/25 12:45:45.652 [E] [controller.go:281]  parse template err: job/edit.html template: job/edit.html:36: undefined variable "$jobd"
+2018/11/25 12:45:51.102 [E] [controller.go:281]  parse template err: job/edit.html template: job/edit.html:36: undefined variable "$jobd"
+2018/11/25 12:46:09.000 [E] [controller.go:281]  parse template err: job/edit.html template: job/edit.html:36: function "jobd" not defined
+2018/11/25 12:46:16.075 [E] [controller.go:281]  parse template err: job/edit.html template: job/edit.html:36: function "jobd" not defined
+2018/11/25 15:50:01.648 [E] [job.go:167]  邮件发送失败！ 553 Mail from must equal authorized user
+2018/11/25 16:57:11.422 [E] [job.go:167]  邮件发送失败！ 553 Mail from must equal authorized user
+2018/11/25 17:14:30.279 [E] [job.go:167]  邮件发送失败！ dial tcp: lookup smtp.126.com: no such host
+2018/11/25 19:48:20.223 [E] [job.go:167]  邮件发送失败！ dial tcp: lookup smtp.126.com: no such host
+2018/11/25 19:59:42.506 [E] [job.go:167]  邮件发送失败！ dial tcp: lookup smtp.126.com: no such host
+2018/11/25 20:02:01.378 [E] [job.go:167]  邮件发送失败！ dial tcp: lookup smtp.126.com: no such host
+2018/11/25 20:02:01.378 [E] [job.go:167]  邮件发送失败！ dial tcp: lookup smtp.126.com: no such host
+2018/11/25 20:40:39.728 [C] [asm_amd64.s:522]  the request url is  /login/index
+2018/11/25 20:40:39.731 [C] [asm_amd64.s:522]  Handler crashed with error can't find templatefile in the path:views//login/index.html
+2018/11/25 20:40:39.731 [C] [asm_amd64.s:522]  /usr/local/go/src/runtime/asm_amd64.s:522
+2018/11/25 20:40:39.731 [C] [asm_amd64.s:522]  /usr/local/go/src/runtime/panic.go:513
+2018/11/25 20:40:39.731 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/astaxie/beego/template.go:73
+2018/11/25 20:40:39.731 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/astaxie/beego/controller.go:283
+2018/11/25 20:40:39.731 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/astaxie/beego/controller.go:234
+2018/11/25 20:40:39.731 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/astaxie/beego/controller.go:214
+2018/11/25 20:40:39.731 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/astaxie/beego/router.go:863
+2018/11/25 20:40:39.731 [C] [asm_amd64.s:522]  /usr/local/go/src/net/http/server.go:2741
+2018/11/25 20:40:39.731 [C] [asm_amd64.s:522]  /usr/local/go/src/net/http/server.go:1847
+2018/11/25 20:40:39.731 [C] [asm_amd64.s:522]  /usr/local/go/src/runtime/asm_amd64.s:1333
+2018/11/25 20:40:39.732 [server.go:2977]  [HTTP] http: multiple response.WriteHeader calls
+2018/11/26 17:20:41.678 [C] [asm_amd64.s:522]  the request url is  /job/stopall
+2018/11/26 17:20:41.678 [C] [asm_amd64.s:522]  Handler crashed with error wrong object type `*interface {}` for rows scan, need *github.com/cnlh/httpMonitor/models.JobDetail
+2018/11/26 17:20:41.678 [C] [asm_amd64.s:522]  /usr/local/go/src/runtime/asm_amd64.s:522
+2018/11/26 17:20:41.678 [C] [asm_amd64.s:522]  /usr/local/go/src/runtime/panic.go:513
+2018/11/26 17:20:41.678 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/astaxie/beego/orm/db.go:905
+2018/11/26 17:20:41.678 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/astaxie/beego/orm/orm_queryset.go:201
+2018/11/26 17:20:41.678 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/cnlh/httpMonitor/models/job.go:87
+2018/11/26 17:20:41.678 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/cnlh/httpMonitor/controllers/job.go:170
+2018/11/26 17:20:41.678 [C] [asm_amd64.s:522]  /usr/local/go/src/runtime/asm_amd64.s:522
+2018/11/26 17:20:41.678 [C] [asm_amd64.s:522]  /usr/local/go/src/reflect/value.go:447
+2018/11/26 17:20:41.678 [C] [asm_amd64.s:522]  /usr/local/go/src/reflect/value.go:308
+2018/11/26 17:20:41.678 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/astaxie/beego/router.go:851
+2018/11/26 17:20:41.678 [C] [asm_amd64.s:522]  /usr/local/go/src/net/http/server.go:2741
+2018/11/26 17:20:41.678 [C] [asm_amd64.s:522]  /usr/local/go/src/net/http/server.go:1847
+2018/11/26 17:20:41.678 [C] [asm_amd64.s:522]  /usr/local/go/src/runtime/asm_amd64.s:1333
+2018/11/26 17:20:41.679 [server.go:2977]  [HTTP] http: multiple response.WriteHeader calls
+2018/11/26 19:06:40.452 [C] [asm_amd64.s:522]  the request url is  /job/delalllog
+2018/11/26 19:06:40.454 [C] [asm_amd64.s:522]  Handler crashed with error unknown field/column name `job_id`
+2018/11/26 19:06:40.455 [C] [asm_amd64.s:522]  /usr/local/go/src/runtime/asm_amd64.s:522
+2018/11/26 19:06:40.455 [C] [asm_amd64.s:522]  /usr/local/go/src/runtime/panic.go:513
+2018/11/26 19:06:40.455 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/astaxie/beego/orm/db_tables.go:368
+2018/11/26 19:06:40.455 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/astaxie/beego/orm/db.go:815
+2018/11/26 19:06:40.455 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/astaxie/beego/orm/orm_queryset.go:186
+2018/11/26 19:06:40.455 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/cnlh/httpMonitor/models/job.go:96
+2018/11/26 19:06:40.455 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/cnlh/httpMonitor/controllers/job.go:189
+2018/11/26 19:06:40.455 [C] [asm_amd64.s:522]  /usr/local/go/src/runtime/asm_amd64.s:522
+2018/11/26 19:06:40.455 [C] [asm_amd64.s:522]  /usr/local/go/src/reflect/value.go:447
+2018/11/26 19:06:40.455 [C] [asm_amd64.s:522]  /usr/local/go/src/reflect/value.go:308
+2018/11/26 19:06:40.455 [C] [asm_amd64.s:522]  /Users/liuhe/go/src/github.com/astaxie/beego/router.go:851
+2018/11/26 19:06:40.455 [C] [asm_amd64.s:522]  /usr/local/go/src/net/http/server.go:2741
+2018/11/26 19:06:40.455 [C] [asm_amd64.s:522]  /usr/local/go/src/net/http/server.go:1847
+2018/11/26 19:06:40.455 [C] [asm_amd64.s:522]  /usr/local/go/src/runtime/asm_amd64.s:1333
+2018/11/26 19:06:40.455 [server.go:2977]  [HTTP] http: multiple response.WriteHeader calls

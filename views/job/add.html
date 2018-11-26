@@ -1,0 +1,189 @@
+<div class="row">
+    <div class="col-md-6 col-md-auto">
+        <div class="tile">
+            <h3 class="tile-title">添加新任务</h3>
+            <div class="tile-body">
+                <form>
+                    <div class="form-group">
+                        <label class="control-label">名称</label>
+                        <input class="form-control" type="text" name="Title" placeholder="请输入任务名称">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">请求方式</label>
+                        <select class="form-control" name="Method">
+                            <option value="GET">GET</option>
+                            <option value="POST">POST</option>
+                            <option value="PUT">PUT</option>
+                            <option value="DELETE">DELETE</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">请求url</label>
+                        <input class="form-control" type="text" name="Url" placeholder="请输入请求的url,带http(s)://">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">请求超时时间</label>
+                        <input class="form-control" type="text" name="Overtime" placeholder="请输入超时时间（秒）">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">分组</label>
+                        <select class="form-control" name="Group">
+                        {{range $index, $elem := .jobg}}
+                            <option value='{{$elem.Id}}'>{{$elem.Title}}</option>
+                        {{end}}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">执行表达式的方式</label>
+                        <select class="form-control" name="CronType">
+                            <option value="1">每隔多少秒</option>
+                            <option value="2">cron表达式</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">执行表达式的值</label>
+                        <input class="form-control" type="text" name="Cron" placeholder="请输入cron值">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">请求header</label>
+                        <textarea class="form-control" name="Header" rows="4"
+                                  placeholder="请输入请求header，注意cookie有效期"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">请求Data</label>
+                        <textarea class="form-control" name="Data" rows="4" placeholder="请输入请求Data"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">执行结果匹配方式</label>
+                        <select class="form-control" name="RegType">
+                            <option value="0">返回状态码匹配</option>
+                            <option value="1">返回内容全匹配</option>
+                            <option value="2">返回内容正则匹配</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">匹配值</label>
+                        <textarea class="form-control" name="RegVal" rows="4" placeholder="请输入匹配值"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">连续出错X次再通知</label>
+                        <input class="form-control" type="text" name="ErrTimes" placeholder="请输入出错次数">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">出错时是否通知</label>
+                        <select class="form-control" name="IsNotice">
+                            <option value="1">通知</option>
+                            <option value="2">不通知</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">出错时通知方式</label>
+                        <select class="form-control" name="NoticeType">
+                            <option value="1">邮件</option>
+                            <option value="2">短信</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">通知人信息</label>
+                        <input class="form-control" type="text" name="NoticeTo" placeholder="请输入通知人信息，手机号或者邮件">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">通知间隔</label>
+                        <input class="form-control" type="text" name="NoticeInterval" placeholder="请输入通知间隔（秒）">
+                    </div>
+                </form>
+            </div>
+            <div class="tile-footer">
+                &nbsp;&nbsp;<button class="btn btn-success" href="#" id="test"><i
+                    class="fa fa-fw fa-lg fa-eye"></i>测试
+            </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="tile">
+            <div class="overlay" id="load">
+                <div class="m-loader mr-4">
+                    <svg class="m-circular" viewBox="25 25 50 50">
+                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4"
+                                stroke-miterlimit="10"></circle>
+                    </svg>
+                </div>
+                <h3 class="l-text">请求中</h3>
+            </div>
+            <h3 class="tile-title">任务测试结果
+                <div class="tile-footer" style="display: none" id="div-add">
+                    <button class="btn btn-danger" type="button" id="add"><i
+                            class="fa fa-fw fa-lg fa-check-circle"></i>添加
+                    </button>&nbsp;
+                </div>
+            </h3>
+
+            <div class="form-group">
+                <h6 class="control-label">执行结果：</h6>
+                <div id="isPass" class="alert alert-primary"></div>
+            </div>
+            <div class="form-group">
+                <h6 class="control-label">运行时间：</h6>
+                <div id="runTime" class="alert alert-primary"></div>
+            </div>
+            <div class="form-group">
+                <h6 class="control-label">返回状态码：</h6>
+                <div id="statusCode" class="alert alert-primary"></div>
+            </div>
+            <div class="form-group">
+                <h6 class="control-label">错误信息：</h6>
+                <div id="err" class="alert alert-danger"></div>
+            </div>
+            <div class="form-group">
+                <h6 class="control-label">返回内容：</h6>
+                <textarea id="reqContent" class="form-control" name="RegVal" rows="10" placeholder=""></textarea>
+            </div>
+
+        </div>
+    </div>
+</div>
+</main>
+<script>
+    $(function () {
+        $("#load").css({"display": "none"})
+        $("#add").on("click", function () {
+            $.ajax({
+                type: "POST",
+                url: "/job/add",
+                data: $("form").serializeArray(),
+                success: function (res) {
+                    alert(res.msg)
+                    if (res.status) {
+                        window.location.href = "/job/list"
+                    }
+                }
+            })
+        })
+        $("#test").on("click", function () {
+            scrollTo(0, 0)
+            $("#load").css({"z-index": 1000, "display": "flex"});
+            data = $("form").serializeArray()
+            data.push({name: "test", value: 1})
+            $("#div-add").css("display","none")
+            $.ajax({
+                type: "POST",
+                url: "/job/add",
+                data: data,
+                success: function (res) {
+                    $("#load").css({"display": "none"});
+                    $("#runTime").html(res.cost)
+                    if (res.isPass) {
+                        $("#div-add").css("display","block")
+                        $("#isPass").html("通过")
+                    } else {
+                        $("#isPass").html("不通过")
+                    }
+                    $("#statusCode").html(res.statuCode)
+                    $("#reqContent").val(res.content)
+                    $("#err").html(res.err)
+                }
+            })
+        })
+    })
+</script>
