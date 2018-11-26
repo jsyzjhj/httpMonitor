@@ -64,6 +64,7 @@ func DelJobById(id int) error {
 	if ok, err := jobList[id]; err {
 		err := mainCron.DelJob(ok.index)
 		if err != nil {
+			delete(jobList, id)
 			return err
 		}
 	}
