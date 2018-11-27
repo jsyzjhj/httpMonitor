@@ -184,7 +184,6 @@ func (self *JobController) ChangeAll() {
 	self.AjaxErr("修改失败")
 }
 
-
 func (self *JobController) DelAllLog() {
 	if err := models.DelLogById(self.GetIntNoErr("id")); err != nil {
 		self.AjaxErr("删除失败")

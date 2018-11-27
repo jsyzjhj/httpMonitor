@@ -6,6 +6,7 @@ import (
 	"github.com/astaxie/beego/orm"
 	"github.com/cnlh/httpMonitor/cron"
 	"github.com/cnlh/httpMonitor/models"
+	"github.com/pkg/errors"
 	"log"
 	"strconv"
 	"strings"
@@ -55,16 +56,18 @@ func AddJobById(id int) error {
 		if err = AddJob(job); err != nil {
 			return err
 		}
+	} else {
+		return errors.New("任务已经存在")
 	}
 	return nil
 }
 
 //通过id删除任务
 func DelJobById(id int) error {
-	if ok, err := jobList[id]; err {
-		err := mainCron.DelJob(ok.index)
+	if v, ok := jobList[id]; ok {
+		err := mainCron.DelJob(v.index)
+		delete(jobList, id)
 		if err != nil {
-			delete(jobList, id)
 			return err
 		}
 	}
