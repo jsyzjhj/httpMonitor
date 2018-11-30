@@ -1,7 +1,7 @@
 # httpMonitor
 http、api接口监控系统,可监控各种http请求，支持header、data设置，支持腾讯云短信和邮件警告通知。
 
-[测试地址](123.206.77.88:8080)
+[测试地址](http://123.206.77.88:8080)
 
 ## 界面
 ![image](https://raw.githubusercontent.com/cnlh/httpMonitor/master/img1.png)
